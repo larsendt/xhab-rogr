@@ -1,4 +1,5 @@
-xhab-rogr
+XHAB ROGR
 =========
 
-XHAB ROGR repository
+This is one of three repositories for CU Boulder's XHAB project. It contains
+all of the code for ROGR (Remotely Operated Gardening Robot).
