@@ -28,6 +28,17 @@ add_message_files(
    FILES
    ArmTask.msg
    ArmCameraTask.msg
+   Alert.msg
+   BatteryTask.msg
+   CameraData.msg
+   Data.msg
+   DrivingTask.msg
+   LiftDriveCameraTask.msg
+   LiftingTask.msg
+   NutrientPumpTask.msg
+   NutrientTankTask.msg
+   WaterPumpTask.msg
+   WaterTankTask.msg
  )
 
 ## Generate services in the 'srv' folder
