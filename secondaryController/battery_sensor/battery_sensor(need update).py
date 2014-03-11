@@ -2,7 +2,8 @@
 
 import sys
 import rospy
-from 	std_msgs.msg import String
+from xhab_rogr.msg import *
+import identity
 
 from ctypes import *
 
@@ -24,15 +25,32 @@ num3 = c_int(0)
 addr3 = addressof(num3)
 battery_level = cast(addr3, INTP3)
 
+'''
+helper.sub_adc_config(dev_id, 0x8040)#enable ADC with VCC ref
+helper.sub_adc_single(dev_id, status1, 0)
+helper.sub_adc_single(dev_id, status2, 1)
+helper.sub_adc_single(dev_id, battery_level, 2)
+if (status1[0] == 1) and (status2[0] == 0):
+	bat_charge = "charging"#charging
+elif (status1[0] == 0) and (status2[0] == 1):
+	bat_charge = "fully charged"
+else:
+	bat_charge = "no battery detected"
+print status1[0]
+print status2[0]
+print battery_level[0]
+'''
+
 class BatterySensor(object):
-	def __init__(self):
+	def__init__(self):
 		print "Battery Sensor initializing..."
 		rospy.init_node("Battery_Sensor")
-		subtopic = "battery_task"
-		pubtopic = "battery_status"
-		self.pub = rospy.Publisher(pubtopic, String)
-		self.sub = rospy.Subscriber(subtopic, String, self.callback)
+		subtopic = "/tasks/" + identity.get_rogr_name() + "/battery"
+		pubtopic = "/data/" + identity.get_rogr_name() + "/battery"
+		self.pub = rospy.Publisher(pubtopic, Data)
+		self.sub = rospy.Subscriber(subtopic, BatteryTask, self.callback)
 	def callback(self, msg):
+		print "got msg, target = ", msg.target
 		print "battery status checking..."
 		helper.sub_adc_config(dev_id, 0x8040)#enable ADC with VCC ref
 		helper.sub_adc_single(dev_id, status1, 0)
@@ -44,14 +62,16 @@ class BatterySensor(object):
 			bat_charge = "fully charged"
 		else:
 			bat_charge = "no battery detected"
-		pubmsg = String()
-		pubmsg.data = bat_charge
+		pubmsg = Data()
+		pubmsg.source = identity.get_rogr_name()
+		pubmsg.property = "battery_charge_status"
+		pubmsg.timestamp = rospy.Time.now()
+		pubmsg.value = bat_charge
 		self.pub.publish(pubmsg)
 
-		pubmsg.data = String(battery_level[0])#need scaling
+		pubmsg.property = "battery_level"
+		pubmsg.value = battery_level[0]#need scaling
 		self.pub.publish(pubmsg)
-		print bat_charge
-		print "battery level is:%s" % String(battery_level[0])
 		print "battery status, level published"
 
 	def spin(self):
