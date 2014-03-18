@@ -12,3 +12,6 @@ LFLAGS := -lusb-1.0 -L//lib/x86_64-linux-gnu
 
 if 32 bit machine add the following:
 LFLAGS := -lusb-1.0 -L/lib/i386-linux-gnu
+
+For the program to find the .so file, copy the libsub.so to the respective library path.
+
