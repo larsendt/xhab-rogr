@@ -85,7 +85,7 @@ def sub_fpwm_config(hndl,freq_hz,flags):
 def sub_fpwm_set(hndl,pwm_n,duty):
     rt = c_int()
     rt = sub_fpwm_set_raw(hndl,pwm_n,duty)
-    retuen(rt)
+    return(rt)
 
 def sub_pwm_config(hndl,res_us,limit):
     rt = c_int()
@@ -95,7 +95,7 @@ def sub_pwm_config(hndl,res_us,limit):
 def sub_pwm_set(hndl,pwm_n,duty):
     rt = c_int()
     rt = sub_pwm_set_raw(hndl,pwm_n,duty)
-    retuen(rt)
+    return(rt)
 
 def sub_adc_config(hndl, flags):
     rt = c_int()
