@@ -25,15 +25,14 @@ LDLIB   :=
 # Compiler Flags 
 #------------------------------------------------------------------------------
 CFLAGS  := -O2 -Wall -Werror -g -I../src -I../boot/vnd/fw -I.
-LDFLAGS	:= -lusb-1.0 -L/lib/i386-linux-gnu
-ifneq (,$(findstring $(OS),Linux Darwin))
-	CFLAGS += -DLIBUSB_1_0 -I/usr/local/include/libusb-1.0
+
+CFLAGS += -DLIBUSB_1_0 -I/usr/include/libusb-1.0
 endif
 
 #------------------------------------------------------------------------------
 # Linker Flags 
 #------------------------------------------------------------------------------
-LFLAGS  :=  
+LFLAGS  :=  -lusb-1.0 -L/lib/i386-linux-gnu
 
 
 #------------------------------------------------------------------------------
@@ -51,7 +50,7 @@ LIBSUB :libsub.so ###libsub.a
 libsub.a : libsub.o
 	ar -rcsv $@ $^
 libsub.so: libsub.o
-	$(CC) -shared -Wl,-soname,$@ -o $@ libsub.o $(LDFLAGS)
+	$(CC) -shared -Wl,-soname,$@ -o $@ libsub.o $(LFLAGS)
 
 clean:
 	@echo $(OS) Clean
