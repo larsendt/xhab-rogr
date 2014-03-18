@@ -1,0 +1,14 @@
+Follow this instruction to add permissions otherwise "SUB device not found" error will occur:
+
+Follow link:
+http://mediabox.grasp.upenn.edu/roswiki/sub20.html
+
+Read SUB20 permissions in the link above.
+
+In the lib folder Makefile do the following chages:
+
+If 64bit machine add the following line in LFLAGS:
+LFLAGS := -lusb-1.0 -L//lib/x86_64-linux-gnu
+
+if 32 bit machine add the following:
+LFLAGS := -lusb-1.0 -L/lib/i386-linux-gnu
