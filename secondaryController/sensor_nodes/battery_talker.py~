@@ -4,7 +4,7 @@ import rospy
 from std_msgs.msg import String
 
 def battery_talker():
-	pub = rospy.Publisher("battery_task", String)
+	pub = rospy.Publisher("distance_task", String)
 	rospy.init_node("battery_talker")
 	while not rospy.is_shutdown():
 		try:	
