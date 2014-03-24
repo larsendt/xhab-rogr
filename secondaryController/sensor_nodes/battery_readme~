@@ -1,4 +1,0 @@
-battery_sensor.py : 
-1. tested with roscore and battery_talker.py, node communication, adc detection works
-2. need update code with ROGR ROS architecture
-3. need adjust ADC detection output with TI board
