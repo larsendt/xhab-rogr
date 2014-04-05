@@ -5,6 +5,8 @@ import math
 import time
 from xhab_rogr.msg import *
 
+MAX_QUEUE = 25
+
 class DriveController(object):
     def __init__(self):
         print "DriveController init"
@@ -36,12 +38,22 @@ class DriveController(object):
             return None
 
     def add_drive_cmd(self, cmd):
-        self.drive_queue.insert(0, cmd)
+        if len(self.drive_queue) < MAX_QUEUE:
+            self.drive_queue.insert(0, cmd)
+            print "drive queue len is:", len(self.drive_queue)
+        else:
+            print "drive queue is full"
 
     def drive(self, cmd):
-        print "Drive:", cmd
-        time.sleep(0.2)
-        self.stop()
+        if cmd is None:
+            self.stop()
+            return
+
+        try:
+            print "Drive:", cmd
+            time.sleep(0.2)
+        finally:
+            self.stop()
 
     def callback(self, msg):
         print "got msg"
