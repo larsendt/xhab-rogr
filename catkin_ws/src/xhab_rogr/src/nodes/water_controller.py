@@ -6,7 +6,7 @@ from xhab_rogr.msg import *
 class WaterController(object):
     def __init__(self):
         rospy.init_node("WaterController")
-        subtopic = "/tasks/rogr/water"
+        subtopic = "/tasks/rogr/waterpump"
         self.sub = rospy.Subscriber(subtopic, WaterPumpTask, self.callback)
 
     def callback(self, msg):

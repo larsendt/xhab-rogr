@@ -6,7 +6,7 @@ from xhab_rogr.msg import *
 class NutrientController(object):
     def __init__(self):
         rospy.init_node("NutrientController")
-        subtopic = "/tasks/rogr/nutrient"
+        subtopic = "/tasks/rogr/nutrientpump"
         self.sub = rospy.Subscriber(subtopic, NutrientPumpTask, self.callback)
 
     def callback(self, msg):
