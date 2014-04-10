@@ -8,7 +8,7 @@ PUB_DELAY = 15
 
 class WaterMonitor(object):
     def __init__(self):
-        "WaterMonitor init"
+        print "WaterMonitor init"
         rospy.init_node("WaterMonitor")
         subtopic = "/tasks/rogr/watertank"
         pubtopic = "/data/rogr/watertank"
@@ -17,7 +17,7 @@ class WaterMonitor(object):
         self.water_level = 0
 
     def callback(self, msg):
-        pass
+        print "callback"
 
 
     def spin(self):

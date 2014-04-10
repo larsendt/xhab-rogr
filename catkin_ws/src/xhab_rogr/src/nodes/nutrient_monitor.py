@@ -8,7 +8,7 @@ PUB_DELAY = 15
 
 class NutrientMonitor(object):
     def __init__(self):
-        "NutrientMonitor init"
+        print "NutrientMonitor init"
         rospy.init_node("NutrientMonitor")
         subtopic = "/tasks/rogr/nutrienttank"
         pubtopic = "/data/rogr/nutrienttank"
@@ -17,6 +17,7 @@ class NutrientMonitor(object):
         self.nutrient_level = 0
 
     def callback(self, msg):
+        print "callback"
         pass
 
 

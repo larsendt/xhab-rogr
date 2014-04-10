@@ -15,6 +15,20 @@ from Queue import Queue, Empty
 HOME = "/home/dane/dev/xhab-rogr/"
 SERVICE_DIR = os.path.join(HOME, "service_files/")
 
+ROS_NODES = ["arm_camera_controller.py",
+             "battery_sensor.py",
+             "drive_controller.py",
+             "lift_controller.py",
+             "lift_drive_camera_controller.py",
+             "nutrient_controller.py",
+             "nutrient_monitor.py",
+             "water_controller.py",
+             "water_monitor.py"]
+
+CMDS = map(lambda x: "rosrun xhab_rogr " + x, ROS_NODES)
+ROSCORE_PROC = None
+ROSMASTER_IP = None
+
 if not os.path.exists(SERVICE_DIR):
     os.makedirs(SERVICE_DIR)
 
@@ -94,6 +108,7 @@ class Service(object):
             self.run()
             print "Hopefully restarted service"
 
+SERVICES = map(lambda (cmd, name): Service(cmd, name), zip(CMDS, ROS_NODES))
 
 def start_roscore():
     for proc in psutil.process_iter():
@@ -119,18 +134,6 @@ def stop_roscore(roscore_proc):
                     os.kill(proc.pid, signal.SIGKILL)
 
 
-ROS_NODES = ["battery_sensor.py",
-             "drive_controller.py",
-             "lift_controller.py",
-             "nutrient_controller.py",
-             "nutrient_monitor.py",
-             "water_controller.py",
-             "water_monitor.py"]
-
-CMDS = map(lambda x: "rosrun xhab_rogr " + x, ROS_NODES)
-SERVICES = map(lambda (cmd, name): Service(cmd, name), zip(CMDS, ROS_NODES))
-ROSCORE_PROC = None
-ROSMASTER_IP = None
 
 def check_already_running(interactive):
     otherproc = None
