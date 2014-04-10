@@ -17,11 +17,13 @@ SERVICE_DIR = os.path.join(HOME, "service_files/")
 
 ROS_NODES = ["arm_camera_controller.py",
              "battery_sensor.py",
+             "distance_sensor.py",
              "drive_controller.py",
              "lift_controller.py",
              "lift_drive_camera_controller.py",
              "nutrient_controller.py",
              "nutrient_monitor.py",
+             "pressure_sensor.py",
              "water_controller.py",
              "water_monitor.py"]
 
@@ -45,6 +47,9 @@ class Service(object):
         self.stdout = []
         self.stderr = []
         self.is_alive = False
+
+        self.write_stdout("Initializing Service: " + name + "\n", "w")
+        self.write_stderr("", "w")
 
     def run(self):
         self.proc = sp.Popen(self.cmd, stdout=sp.PIPE, stderr=sp.PIPE, close_fds=True)
@@ -73,13 +78,20 @@ class Service(object):
             queue.put(line)
         out.close()
 
+    def write_stdout(self, text, mode="a"):
+        with open(SERVICE_DIR + self.cmd[2] + ".stdout.txt", mode) as f:
+            f.write(text)
+
+    def write_stderr(self, text, mode="a"):
+        with open(SERVICE_DIR + self.cmd[2] + ".stderr.txt", mode) as f:
+            f.write(text)
+
     def update(self):
         try:
             while True:
                 stdout = self.stdout_queue.get_nowait()
                 self.stdout.append(stdout)
-                with open(SERVICE_DIR + self.cmd[2] + ".stdout.txt", "a") as f:
-                    f.write(stdout)
+                self.write_stdout(stdout)
         except Empty:
             pass
 
@@ -87,8 +99,7 @@ class Service(object):
             while True:
                 stderr = self.stderr_queue.get_nowait()
                 self.stderr.append(stderr)
-                with open(SERVICE_DIR + self.cmd[2] + ".stderr.txt", "a") as f:
-                    f.write(stderr)
+                self.write_stderr(stderr)
         except Empty:
             pass
 
