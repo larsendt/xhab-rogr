@@ -6,6 +6,8 @@ from rogrpins import *
 from muxconfig import *
 
 def getNutrientLevel():
+  #open device 
+  devid = sub_open(0)
   #enable ADC module
   sub_adc_config(devid, 0x8040)#enable ADC with VCC ref
   #enable mux GPIOPins as output mode
