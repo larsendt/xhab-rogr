@@ -7,7 +7,7 @@ HIGH_ADC = 923
 MIN_ADC = 0
 LOW_ADC = 100
 
-def setpin(output,pin):
+def setpin(pin):
   output = 0x00000000
   output = output |( 1 << pin)
   return(output)
