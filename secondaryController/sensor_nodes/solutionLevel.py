@@ -18,7 +18,7 @@ def solutionLevel(solution):
     rt,status = sub_gpio_write(devid,getSelectValue(MUX_WATER_LEVEL2_PIN),muxmask)
     #read WATERLEVEL2 
     waterlevel = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
-    return(waterlevel)
+    print (waterlevel)
     if(waterlevel == 0): #if 0 then waterlevel is 3
       return(LEVEL3)
     elif(waterlevel == -1):#error in reading adc value
