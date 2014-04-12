@@ -19,7 +19,7 @@ def solutionLevel(solution):
     #read WATERLEVEL2 
     rt,level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
     waterlevel = adcRangeToValue(level)
-    print (waterlevel)
+    #print (waterlevel)
     if(waterlevel == 0): #if 0 then waterlevel is 3
       return(LEVEL3)
     elif(waterlevel == -1):#error in reading adc value
@@ -53,7 +53,8 @@ def solutionLevel(solution):
     #set NUTRIENTLEVEL2 select line 
     rt,status = sub_gpio_write(devid,getSelectValue(MUX_NUTRIENT_LEVEL2_PIN),muxmask)
     #read NUTRIENTLEVEL2 
-    level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
+    rt,level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
+    level = adcRangeToValue(level)
     if(level == 0): #if 0 then nutrientlevel is 3
       return(LEVEL3)
     elif(level == -1):#error in reading adc value
@@ -61,7 +62,8 @@ def solutionLevel(solution):
     #set NUTIRENTLEVEL1 select line 
     rt,status = sub_gpio_write(devid,getSelectValue(MUX_NUTRIENT_LEVEL1_PIN),muxmask)
     #read NUTRIENTLEVEL1 
-    level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
+    rt,level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
+    level = adcRangeToValue(level)
     if(level == 0): #if 0 then nutrientlevel is 2
       return(LEVEL2)
     elif(level == -1): #error in reading adc value
@@ -70,6 +72,7 @@ def solutionLevel(solution):
     rt,status = sub_gpio_write(devid,getSelectValue(MUX_NUTRIENT_LEVEL0_PIN),muxmask)
     #read NUTRIENTLEVEL1 
     level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
+    level = adcRangeToValue(level)
     if(level == 0): #if 0 then nutrientlevel is 1
       return(LEVEL1)
     elif(level == 1): #if 1 nutrient level is 0
