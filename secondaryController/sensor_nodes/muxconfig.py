@@ -40,7 +40,7 @@ def adcrangeToValue(adcval):
   if(adcval <= MAX_ADC and adcval >= HIGH_ADC):
     return(1)
   elif(adcval >= MIN_ADC and adcval <= LOW_ADC):
-    return(0)
+    return(int(0))
   else:
     return(-1)
   
