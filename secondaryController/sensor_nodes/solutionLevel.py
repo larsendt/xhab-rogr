@@ -4,11 +4,6 @@ import sys
 from sub20 import *
 from rogrpins import *
 
-
-
-MAX_ADC = 1023
-MAX_VOLT = 5
-
 LEVEL3 = 3
 LEVEL2 = 2
 LEVEL1 = 1
@@ -20,10 +15,10 @@ ERROR0 = -1
 
 def solutionLevel(solution):
   #open device 
-  dev_id = sub_open(0)
+  devid = sub_open(0)
   if(solution == 0): #the solution is water
     #enable ADC module
-    sub_adc_config(dev_id, 0x8040)#enable ADC with VCC ref
+    sub_adc_config(devid, 0x8040)#enable ADC with VCC ref
     #enable mux GPIOPins as output mode
     rt,status = sub_gpio_config(devid, muxmask, muxmask) # mask and set are the same for ouput mode
     #set WATERLEVEL2 select line 
@@ -55,7 +50,7 @@ def solutionLevel(solution):
     
   elif(solution == 1): #the solution is nutrient
     #enable ADC module
-    sub_adc_config(dev_id, 0x8040)#enable ADC with VCC ref
+    sub_adc_config(devid, 0x8040)#enable ADC with VCC ref
     #enable mux GPIOPins as output mode
     rt,status = sub_gpio_config(devid, muxmask, muxmask) # mask and set are the same for ouput mode
     #set NUTRIENTLEVEL2 select line 
