@@ -5,7 +5,7 @@ from sub20 import *
 from rogrpins import *
 
 
-dev_id = sub_open(0)
+
 MAX_ADC = 1023
 MAX_VOLT = 5
 
@@ -19,7 +19,8 @@ ERROR0 = -1
 
 
 def solutionLevel(solution):
-  
+  #open device 
+  dev_id = sub_open(0)
   if(solution == 0): #the solution is water
     #enable ADC module
     sub_adc_config(dev_id, 0x8040)#enable ADC with VCC ref
