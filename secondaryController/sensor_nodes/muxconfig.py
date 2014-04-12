@@ -11,9 +11,9 @@ LEVEL3 = 3
 LEVEL2 = 2
 LEVEL1 = 1
 LEVEL0 = 0
-ERROR2 = -3
-ERROR1 = -2
-ERROR0 = -1
+ERROR3 = -3
+ERROR2 = -2
+ERROR1 = -1
 
 def setpin(pin):
   output = 0x00000000
