@@ -18,7 +18,7 @@ ERROR0 = -1
 def setpin(pin):
   output = 0x00000000
   output = output |( 1 << pin)
-  return(hex(output))
+  return(output)
 
 channelToValue = { 0: 0x00000000,
             1: setpin(GPIO_MUX_S0_PIN),
@@ -33,7 +33,7 @@ channelToValue = { 0: 0x00000000,
 muxmask = setpin(GPIO_MUX_ENABLE_PIN) | setpin(GPIO_MUX_S0_PIN) | setpin(GPIO_MUX_S1_PIN) | setpin(GPIO_MUX_S2_PIN)
 
 def getSelectValue(pin):
-  return channelToValue[pin]
+  return (hex(channelToValue[pin])
   
 
 def adcrangeToValue(adcval):
