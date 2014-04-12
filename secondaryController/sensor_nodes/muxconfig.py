@@ -32,7 +32,7 @@ channelToValue = { 0: 0x00000000,
             
 muxmask = setpin(GPIO_MUX_ENABLE_PIN) | setpin(GPIO_MUX_S0_PIN) | setpin(GPIO_MUX_S1_PIN) | setpin(GPIO_MUX_S2_PIN)
 
-def getselectValue(pin):
+def getSelectValue(pin):
   val = channelToValue[pin]()
   return(hex(val))
 
