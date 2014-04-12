@@ -21,14 +21,14 @@ def setpin(pin):
   output = output |( 1 << pin)
   return(output)
 
-channelToValue = { 0: 0x00000000,
-            1: setpin(GPIO_MUX_S0_PIN),
-            2: setpin(GPIO_MUX_S1_PIN),
-            3: setpin(GPIO_MUX_S0_PIN)| setpin(GPIO_MUX_S1_PIN),
-            4: setpin(GPIO_MUX_S2_PIN),
-            5: setpin(GPIO_MUX_S0_PIN) | setpin(GPIO_MUX_S2_PIN),
-            6: setpin(GPIO_MUX_S1_PIN) | setpin(GPIO_MUX_S2_PIN),
-            7: setpin(GPIO_MUX_S0_PIN) | setpin(GPIO_MUX_S1_PIN) | setpin(GPIO_MUX_S2_PIN),
+channelToValue = { MUX_WATER_LEVEL0_PIN: 0x00000000,
+            MUX_WATER_LEVEL1_PIN: setpin(GPIO_MUX_S0_PIN),
+            MUX_WATER_LEVEL2_PIN: setpin(GPIO_MUX_S1_PIN),
+            MUX_NUTRIENT_LEVEL0_PIN: setpin(GPIO_MUX_S0_PIN)| setpin(GPIO_MUX_S1_PIN),
+            MUX_NUTRIENT_LEVEL1_PIN: setpin(GPIO_MUX_S2_PIN),
+            MUX_NUTRIENT_LEVEL2_PIN: setpin(GPIO_MUX_S0_PIN) | setpin(GPIO_MUX_S2_PIN),
+            MUX_LEFT_PRESSURE_SENSOR_PIN: setpin(GPIO_MUX_S1_PIN) | setpin(GPIO_MUX_S2_PIN),
+            MUX_RIGHT_PRESSURE_SENSOR_PIN: setpin(GPIO_MUX_S0_PIN) | setpin(GPIO_MUX_S1_PIN) | setpin(GPIO_MUX_S2_PIN),
             }
             
 muxmask = setpin(GPIO_MUX_ENABLE_PIN) | setpin(GPIO_MUX_S0_PIN) | setpin(GPIO_MUX_S1_PIN) | setpin(GPIO_MUX_S2_PIN)
