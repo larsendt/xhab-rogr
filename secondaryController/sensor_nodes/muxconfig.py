@@ -52,7 +52,7 @@ def adcRangeToValue(val):
     return(0)
   elif(adcval >= 50):
     return(1)
-  else
+  else:
     return(-1)
   
 
