@@ -18,7 +18,7 @@ def getWaterLevel():
   #read WATERLEVEL2 
   rt,level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
   waterlevel = adcRangeToValue(level)
-  print (waterlevel)
+  #print (waterlevel)
   if(waterlevel == 0): #if 0 then waterlevel is 3
     return(LEVEL3)
   elif(waterlevel == -1):#error in reading adc value
