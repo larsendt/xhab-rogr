@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
 import sys
-import rospy
 from sub20 import *
 from rogrpins import *
-from muxconfig import *
-from 	std_msgs.msg import String
+
 
 dev_id = sub_open(0)
 MAX_ADC = 1023
