@@ -40,11 +40,19 @@ def getSelectValue(pin):
 def adcRangeToValue(val):
   adcval = val.value
   print "adcvalue" + str(adcval)
+  '''
   if(adcval <= MAX_ADC and adcval >= HIGH_ADC):
     return(1)
   elif(adcval >= MIN_ADC and adcval <= LOW_ADC):
     return(0)
   else:
+    return(-1)
+  '''
+  if(adcval == 0):
+    return(0)
+  elif(adcval >= 50):
+    return(1)
+  else
     return(-1)
   
 
