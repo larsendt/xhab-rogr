@@ -42,7 +42,7 @@ def adcrangeToValue(adcval):
   elif(adcval >= MIN_ADC and adcval <= LOW_ADC):
     return(0)
   else:
-    return(-1)
+    return(adcval)
   
 
 
