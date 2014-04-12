@@ -36,7 +36,8 @@ def getSelectValue(pin):
   return(channelToValue[pin])
   
 
-def adcRangeToValue(adcval):
+def adcRangeToValue(val):
+  adcval = ctypes.c_int(val).value
   if(adcval <= MAX_ADC and adcval >= HIGH_ADC):
     return(1)
   elif(adcval >= MIN_ADC and adcval <= LOW_ADC):
