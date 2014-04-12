@@ -5,14 +5,6 @@ from sub20 import *
 from rogrpins import *
 from muxconfig import *
 
-LEVEL3 = 3
-LEVEL2 = 2
-LEVEL1 = 1
-LEVEL0 = 0
-ERROR2  = -3
-ERROR1 = -2
-ERROR0 = -1
-
 
 def solutionLevel(solution):
   #open device 
