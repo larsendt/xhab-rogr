@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+MAX_ADC = 1023
+HIGH_ADC = 923
+MIN_ADC = 0
+LOW_ADC = 100
 
 def setpin(output,pin):
   output = 0x00000000
@@ -17,6 +21,17 @@ channelToValue = { 0: 0x00000000,
             }
             
 muxmask = setpin(GPIO_MUX_ENABLE_PIN) | setpin(GPIO_MUX_S0_PIN) | setpin(GPIO_MUX_S1_PIN) | setpin(GPIO_MUX_S2_PIN)
+
+
+
+def adcrangeToValue(adcval):
+  if(adcval <= MAX_ADC and adcval >= HIGH_ADC):
+    return(1)
+  elif(adcval >= MIN_ADC and adcval <= LOW_ADC):
+    return(0)
+  else:
+    return(-1)
+  
 
 
             
