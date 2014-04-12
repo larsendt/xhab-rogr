@@ -26,7 +26,8 @@ def solutionLevel(solution):
     #set WATERLEVEL1 select line 
     rt,status = sub_gpio_write(devid,getSelectValue(MUX_WATER_LEVEL1_PIN),muxmask)
     #read WATERLEVEL1 
-    waterlevel = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
+   level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
+    waterlevel = adcRangeToValue(waterlevel)
     if(waterlevel == 0): #if 0 then waterlevel is 2
       return(LEVEL2)
     elif(waterlevel == -1): #error in reading adc value
