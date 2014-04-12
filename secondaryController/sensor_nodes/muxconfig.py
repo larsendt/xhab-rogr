@@ -36,7 +36,7 @@ def getSelectValue(pin):
   return(channelToValue[pin])
   
 
-def adcrangeToValue(adcval):
+def adcRangeToValue(adcval):
   if(adcval <= MAX_ADC and adcval >= HIGH_ADC):
     return(1)
   elif(adcval >= MIN_ADC and adcval <= LOW_ADC):
