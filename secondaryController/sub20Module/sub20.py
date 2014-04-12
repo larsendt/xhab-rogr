@@ -105,7 +105,7 @@ def sub_adc_config(hndl, flags):
 def sub_adc_single(hndl,mux):
     rt = c_int()
     data = c_int()
-    rt = sub_adc_single(hndl,byref(data), mux)
+    rt = sub_adc_single_raw(hndl,byref(data), mux)
     return(rt,data)
 
 
