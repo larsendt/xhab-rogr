@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from rogrpins import *
+
 MAX_ADC = 1023
 HIGH_ADC = 923
 MIN_ADC = 0
