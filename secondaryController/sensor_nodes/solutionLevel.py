@@ -15,7 +15,7 @@ def solutionLevel(solution):
     #enable mux GPIOPins as output mode
     rt,status = sub_gpio_config(devid, muxmask, muxmask) # mask and set are the same for ouput mode
     #set WATERLEVEL2 select line 
-    rt,status = sub_gpio_write(devid,channelToValue[MUX_WATER_LEVEL2_PIN](),muxmask)
+    rt,status = sub_gpio_write(devid,getSelectValue(MUX_WATER_LEVEL2_PIN),muxmask)
     #read WATERLEVEL2 
     waterlevel = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
     if(waterlevel == 0): #if 0 then waterlevel is 3
@@ -23,7 +23,7 @@ def solutionLevel(solution):
     elif(waterlevel == -1):#error in reading adc value
       return(ERROR3)
     #set WATERLEVEL1 select line 
-    rt,status = sub_gpio_write(devid,channelToValue[MUX_WATER_LEVEL1_PIN](),muxmask)
+    rt,status = sub_gpio_write(devid,getSelectValue(MUX_WATER_LEVEL1_PIN),muxmask)
     #read WATERLEVEL1 
     waterlevel = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
     if(waterlevel == 0): #if 0 then waterlevel is 2
@@ -31,7 +31,7 @@ def solutionLevel(solution):
     elif(waterlevel == -1): #error in reading adc value
       return(ERROR2)
     #set WATERLEVEL1 select line 
-    rt,status = sub_gpio_write(devid,channelToValue[MUX_WATER_LEVEL0_PIN](),muxmask)
+    rt,status = sub_gpio_write(devid,getSelectValue(MUX_WATER_LEVEL0_PIN),muxmask)
     #read WATERLEVEL1 
     waterlevel = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
     if(waterlevel == 0): #if 0 then waterlevel is 1
@@ -47,7 +47,7 @@ def solutionLevel(solution):
     #enable mux GPIOPins as output mode
     rt,status = sub_gpio_config(devid, muxmask, muxmask) # mask and set are the same for ouput mode
     #set NUTRIENTLEVEL2 select line 
-    rt,status = sub_gpio_write(devid,channelToValue[MUX_NUTRIENT_LEVEL2_PIN](),muxmask)
+    rt,status = sub_gpio_write(devid,getSelectValue(MUX_NUTRIENT_LEVEL2_PIN),muxmask)
     #read NUTRIENTLEVEL2 
     level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
     if(level == 0): #if 0 then nutrientlevel is 3
@@ -55,7 +55,7 @@ def solutionLevel(solution):
     elif(level == -1):#error in reading adc value
       return(ERROR3)
     #set NUTIRENTLEVEL1 select line 
-    rt,status = sub_gpio_write(devid,channelToValue[MUX_NUTRIENT_LEVEL1_PIN](),muxmask)
+    rt,status = sub_gpio_write(devid,getSelectValue(MUX_NUTRIENT_LEVEL1_PIN),muxmask)
     #read NUTRIENTLEVEL1 
     level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
     if(level == 0): #if 0 then nutrientlevel is 2
@@ -63,7 +63,7 @@ def solutionLevel(solution):
     elif(level == -1): #error in reading adc value
       return(ERROR2)
     #set NUTIRENTLEVEL1 select line 
-    rt,status = sub_gpio_write(devid,channelToValue[MUX_NUTRIENT_LEVEL0_PIN](),muxmask)
+    rt,status = sub_gpio_write(devid,getSelectValue(MUX_NUTRIENT_LEVEL0_PIN),muxmask)
     #read NUTRIENTLEVEL1 
     level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
     if(level == 0): #if 0 then nutrientlevel is 1
