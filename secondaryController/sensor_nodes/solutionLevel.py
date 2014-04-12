@@ -3,6 +3,7 @@
 import sys
 from sub20 import *
 from rogrpins import *
+from muxconfig import *
 
 LEVEL3 = 3
 LEVEL2 = 2
