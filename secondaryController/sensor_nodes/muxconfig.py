@@ -28,7 +28,7 @@ channelToValue = { 0: 0x00000000,
             5: setpin(GPIO_MUX_S0_PIN) | setpin(GPIO_MUX_S2_PIN),
             6: setpin(GPIO_MUX_S1_PIN) | setpin(GPIO_MUX_S2_PIN),
             7: setpin(GPIO_MUX_S0_PIN) | setpin(GPIO_MUX_S1_PIN) | setpin(GPIO_MUX_S2_PIN),
-            }
+            }[value]()
             
 muxmask = setpin(GPIO_MUX_ENABLE_PIN) | setpin(GPIO_MUX_S0_PIN) | setpin(GPIO_MUX_S1_PIN) | setpin(GPIO_MUX_S2_PIN)
 
