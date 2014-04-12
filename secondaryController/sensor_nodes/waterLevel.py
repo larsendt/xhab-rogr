@@ -6,7 +6,7 @@ from rogrpins import *
 from muxconfig import *
 
 
-def waterLevel():
+def getWaterLevel():
   #open device 
   devid = sub_open(0)
   #enable ADC module
