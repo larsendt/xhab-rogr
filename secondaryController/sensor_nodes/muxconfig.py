@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from rogrpins import *
+import ctypes
 
 MAX_ADC = 1023
 HIGH_ADC = 923
