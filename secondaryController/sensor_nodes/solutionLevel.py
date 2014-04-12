@@ -17,7 +17,7 @@ def solutionLevel(solution):
     #set WATERLEVEL2 select line 
     rt,status = sub_gpio_write(devid,getSelectValue(MUX_WATER_LEVEL2_PIN),muxmask)
     #read WATERLEVEL2 
-    level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
+    rt,level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
     waterlevel = adcRangeToValue(level)
     print (waterlevel)
     if(waterlevel == 0): #if 0 then waterlevel is 3
@@ -27,7 +27,7 @@ def solutionLevel(solution):
     #set WATERLEVEL1 select line 
     rt,status = sub_gpio_write(devid,getSelectValue(MUX_WATER_LEVEL1_PIN),muxmask)
     #read WATERLEVEL1 
-    level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
+    rt,level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
     waterlevel = adcRangeToValue(level)
     if(waterlevel == 0): #if 0 then waterlevel is 2
       return(LEVEL2)
@@ -36,7 +36,7 @@ def solutionLevel(solution):
     #set WATERLEVEL1 select line 
     rt,status = sub_gpio_write(devid,getSelectValue(MUX_WATER_LEVEL0_PIN),muxmask)
     #read WATERLEVEL1 
-    level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
+    rt,level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
     waterlevel = adcRangeToValue(level)
     if(waterlevel == 0): #if 0 then waterlevel is 1
       return(LEVEL1)
