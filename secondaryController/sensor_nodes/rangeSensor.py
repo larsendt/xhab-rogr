@@ -27,7 +27,7 @@ def getDistance(direction):
   #read getdistance
   rt,distance = sub_adc_single(devid,adcpin)
   #calibration
-	real_distance = 27/((float)(distance.value)*MAX_VOLT/MAX_ADC)
+  real_distance = 27/((float)(distance.value)*MAX_VOLT/MAX_ADC)
   return real_distance
   
   
