@@ -27,8 +27,10 @@ def getNutrientLevel():
   rt,level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
   level = adcRangeToValue(level)
   if(level == 0): #if 0 then nutrientlevel is 2
+    sub_close(devid)
     return(LEVEL2)
   elif(level == -1): #error in reading adc value
+    sub_close(devid)
     return(ERROR2)
   #set NUTIRENTLEVEL1 select line 
   rt,status = sub_gpio_write(devid,getSelectValue(MUX_NUTRIENT_LEVEL0_PIN),muxmask)
@@ -36,9 +38,12 @@ def getNutrientLevel():
   level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
   level = adcRangeToValue(level)
   if(level == 0): #if 0 then nutrientlevel is 1
+    sub_close(devid)
     return(LEVEL1)
   elif(level == 1): #if 1 nutrient level is 0
+    sub_close(devid)
     return(LEVEL0)
   else:
+    sub_close(devid)
     return(ERROR1) #error in reaading adc value
     
