@@ -2,7 +2,6 @@
 
 from sub20 import *
 from rogrpins import *
-from muxconfig import *
 
 FRONT = 0
 BACK = 1
