@@ -27,7 +27,7 @@ def getPressureLevel(direction):
   #read READPRESSURELEVEL 
   rt,level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
   #calibration
-  real_force = ((float)(RESISTANCE*level)/(1-(level/MAX_ADC)))
+  real_force = ((float)(RESISTANCE*level.value)/(1-(level.value/MAX_ADC)))
   return real_force
 	
 	
