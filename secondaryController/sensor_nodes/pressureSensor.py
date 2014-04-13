@@ -15,9 +15,9 @@ def getPressureLevel(direction):
   #enable mux GPIOPins as output mode
   rt,status = sub_gpio_config(devid, muxmask, muxmask) # mask and set are the same for ouput mode
   #set PRESSURESENSOR select line
-  if(direction  == LEFT):
+  if(direction == LEFT):
     selectval = getSelectValue(MUX_LEFT_PRESSURE_SENSOR_PIN)
-  elif:
+  elif(direction == RIGHT):
     selectval = getSelectValue(MUX_RIGHT_PRESSURE_SENSOR_PIN)
   else:
     return(-1)
