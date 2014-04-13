@@ -7,6 +7,8 @@ from muxconfig import *
 LEFT = 0
 RIGHT = 1
 
+RESISTANCE = 27000 ##27kom
+
 def getPressureLevel(direction):
   #open device 	
   devid = sub_open(0)
