@@ -20,17 +20,21 @@ def getWaterLevel():
   waterlevel = adcRangeToValue(level)
   #print (waterlevel)
   if(waterlevel == 0): #if 0 then waterlevel is 3
+    sub_close(devid)
     return(LEVEL3)
   elif(waterlevel == -1):#error in reading adc value
+    sub_close(devid)
     return(ERROR3)
   #set WATERLEVEL1 select line 
   rt,status = sub_gpio_write(devid,getSelectValue(MUX_WATER_LEVEL1_PIN),muxmask)
   #read WATERLEVEL1 
   rt,level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
   waterlevel = adcRangeToValue(level)
-  if(waterlevel == 0): #if 0 then waterlevel is 2
+  if(waterlevel == 0):#if 0 then waterlevel is 2
+    sub_close(devid)
     return(LEVEL2)
   elif(waterlevel == -1): #error in reading adc value
+    sub_close(devid)
     return(ERROR2)
   #set WATERLEVEL1 select line 
   rt,status = sub_gpio_write(devid,getSelectValue(MUX_WATER_LEVEL0_PIN),muxmask)
@@ -38,10 +42,13 @@ def getWaterLevel():
   rt,level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
   waterlevel = adcRangeToValue(level)
   if(waterlevel == 0): #if 0 then waterlevel is 1
+    sub_close(devid)
     return(LEVEL1)
   elif(waterlevel == 1): #if 1 water level is 0
+    sub_close(devid)
     return(LEVEL0)
   else:
+    sub_close(devid)
     return(ERROR1) #error in reaading adc value
     
 
