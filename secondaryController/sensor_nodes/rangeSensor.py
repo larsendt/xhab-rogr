@@ -7,6 +7,8 @@ FRONT = 0
 BACK = 1
 LEFT = 2
 RIGHT = 3
+MAX_VOLT = 5
+MAX_ADC = 1023
 
 def getDistance(direction):
   #open device 	
@@ -23,8 +25,10 @@ def getDistance(direction):
   else:
     adcpin = ADC_RIGHT_RANGE_PIN
   #read getdistance
-  rt,level = sub_adc_single(devid,adcpin)
-  return level
+  rt,distance = sub_adc_single(devid,adcpin)
+  #calibration
+	real_distance = 27/((float)(distance.value)*MAX_VOLT/MAX_ADC)
+  return real_distance
   
   
 
