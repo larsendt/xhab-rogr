@@ -20,7 +20,7 @@ def getPressureLevel(direction):
   elif:
     selectval = getSelectValue(MUX_RIGHT_PRESSURE_SENSOR_PIN)
   else:
-  	return(-1)
+    return(-1)
   rt,status = sub_gpio_write(devid,selectval,muxmask)
   #read READPRESSURELEVEL 
   rt,level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
