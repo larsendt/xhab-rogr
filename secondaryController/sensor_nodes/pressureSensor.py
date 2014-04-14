@@ -4,10 +4,7 @@ from sub20 import *
 from rogrpins import *
 from muxconfig import *
 
-LEFT = 0
-RIGHT = 1
 
-RESISTANCE = 27000 ##27kom
 
 def getPressureLevel(direction):
   #open device 	
@@ -17,9 +14,9 @@ def getPressureLevel(direction):
   #enable mux GPIOPins as output mode
   rt,status = sub_gpio_config(devid, muxmask, muxmask) # mask and set are the same for ouput mode
   #set PRESSURESENSOR select line
-  if(direction == LEFT):
+  if(direction == PLEFT):
     selectval = getSelectValue(MUX_LEFT_PRESSURE_SENSOR_PIN)
-  elif(direction == RIGHT):
+  elif(direction == PRIGHT):
     selectval = getSelectValue(MUX_RIGHT_PRESSURE_SENSOR_PIN)
   else:
     return(-1)
