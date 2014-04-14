@@ -22,7 +22,7 @@ getBatteryInfo():
     battery_charge = "charging"#charging
   elif (status1 < 100) and (status2 > 500):
     battery_charge = "fully charged"
-	else:
+  else:
 	  battery_charge = "no battery detected"
 	#close the device		
 	sub_close(devid)
