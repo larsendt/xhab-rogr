@@ -21,10 +21,11 @@ getBatteryInfo():
   if (status1 > 500) and (status2 < 100):#need adjust threshold
     battery_charge = "charging"#charging
   elif (status1 < 100) and (status2 > 500):
-	  battery_charge = "fully charged"
+    battery_charge = "fully charged"
 	else:
 	  battery_charge = "no battery detected"
 	#close the device		
 	sub_close(devid)
   return(battery_charge,battery_level)
+  
   
