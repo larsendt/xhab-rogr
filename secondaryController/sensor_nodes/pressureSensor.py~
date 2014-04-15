@@ -23,7 +23,7 @@ def getPressureLevel(direction):
   rt,status = sub_gpio_write(devid,selectval,muxmask)
   #read READPRESSURELEVEL 
   rt,level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
-  #calibration, depends on circuit, value in resistance
+  #calibration, depends on circuit
   real_force = ((float)(RESISTANCE*level.value)/(1-(level.value/MAX_ADC)))
   return real_force
 	

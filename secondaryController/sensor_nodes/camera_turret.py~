@@ -51,7 +51,7 @@ def moveServo(hndl,pan,tilt,servodir):
 def main():
 	hndl = sub_open(0)
 
-        # Set PWM resolution=50us, limit=250, frequency=80Hz */
+        # Set PWM resolution=50ms, limit=250, frequency=80Hz */
 	i = sub_pwm_config( hndl, 50, 250 )
 	#* Set PWM_4 and PWM_5 pin (GPIO28 & GPIO29) to output state */
 	i = sub_gpio_config( hndl, 0x30000000, 0x30000000 )

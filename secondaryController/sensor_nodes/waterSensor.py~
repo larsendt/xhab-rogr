@@ -49,7 +49,19 @@ def getWaterLevel():
     return(LEVEL0)
   else:
     sub_close(devid)
-    return(ERROR1) #error in reaading adc value
+    return(ERROR1) #error in reading adc value
+
+def setWaterPumpStatus(status):#GPIO13
+  #open device 
+  devid = sub_open(0) 
+  sub_gpio_config(devid,0x00002000,0x00002000)
+  if(status == PUMP_ON): #turn on pump
+	sub_gpio_write(devid,0x00002000,0x00002000)
+  elif(status == PUMP_OFF):
+	sub_gpio_write(devid,0x00000000,0x00002000)
+  else:
+    sub_close(devid)
+    return(ERROR4) #error in setting gpio status
     
 
 
