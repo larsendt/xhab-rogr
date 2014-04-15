@@ -49,7 +49,7 @@ def getWaterLevel():
     return(LEVEL0)
   else:
     sub_close(devid)
-    return(ERROR1) #error in reading adc value
+    return(ERROR1) #error in reaading adc value
     
 
 
