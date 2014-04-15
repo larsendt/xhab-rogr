@@ -1,7 +1,7 @@
 string source = rogr
 string target = drivingmechanism
 time timestamp
-int8 trans_x
-int8 trans_y
-int8 rot
+float32 trans_x
+float32 trans_y
+float32 rot
 

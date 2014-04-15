@@ -25,8 +25,8 @@ class DriveController(object):
     def rotate(self, rotate_speed):
         return self.wheel_multipliers(0.0, 0.0, rotate_speed)
 
-    def translate(self, angle):
-        return self.wheel_multipliers(0.1, angle, 0.0)
+    def translate(self, angle, speed):
+        return self.wheel_multipliers(speed, angle, 0.0)
 
     def stop(self):
         return (0, 0, 0, 0)
@@ -40,9 +40,10 @@ class DriveController(object):
     def add_drive_cmd(self, cmd):
         if len(self.drive_queue) < MAX_QUEUE:
             self.drive_queue.insert(0, cmd)
-            print "drive queue len is:", len(self.drive_queue)
+            #print "drive queue len is:", len(self.drive_queue)
         else:
-            print "drive queue is full"
+            pass
+            #print "drive queue is full"
 
     def drive(self, cmd):
         if cmd is None:
@@ -50,35 +51,20 @@ class DriveController(object):
             return
 
         try:
-            print "Drive:", cmd
-            time.sleep(0.2)
+            print "Drive:", map(lambda x: "%.4f" % x, cmd)
         finally:
             self.stop()
 
     def callback(self, msg):
-        print "got msg"
-        if msg.trans_y > 0:
-            print "forward"
-            cmd = self.translate(0)
-        elif msg.trans_x < 0:
-            print "backward"
-            cmd = self.translate(math.pi)
-        elif msg.trans_x > 0:
-            print "right"
-            cmd = self.translate(3*math.pi/2)
-        elif msg.trans_x < 0:
-            print "left"
-            cmd = self.translate(math.pi/2)
-        elif msg.rot > 0:
-            print "counter clockwise"
-            cmd = self.rotate(0.1)
-        elif msg.rot < 0:
-            print "clockwise"
-            cmd = self.rotate(-0.1)
-        else:
-            cmd = self.stop()
+        xaxis = self.translate(math.pi/2, msg.trans_x)
+        yaxis = self.translate(0, msg.trans_y)
+        rot = self.rotate(msg.rot)
 
-        self.add_drive_cmd(cmd)
+        mults = zip(xaxis, yaxis, rot)
+        avgs = map(lambda x: float(sum(x))/len(x), mults)
+        t = 0.04
+        floored = map(lambda x: 0 if x < t and x > -t else x, avgs)
+        self.add_drive_cmd(floored)
 
     def spin(self):
         print "DriveController listening"
