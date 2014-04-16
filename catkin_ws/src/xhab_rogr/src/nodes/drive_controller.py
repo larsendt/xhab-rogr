@@ -4,6 +4,7 @@ import rospy
 import math
 import time
 from xhab_rogr.msg import *
+import motor_controller as mc
 
 MAX_QUEUE = 25
 
@@ -14,6 +15,8 @@ class DriveController(object):
         subtopic = "/tasks/rogr/drive"
         self.sub = rospy.Subscriber(subtopic, DrivingTask, self.callback)
         self.drive_queue = []
+        self.controller = mc.MotorController(10000, 15000)
+        self.controller.attach()
 
     def wheel_multipliers(self, speed, angle, rot_speed):
         v1 = (speed * math.sin(angle + (math.pi / 4))) + rot_speed
@@ -52,6 +55,7 @@ class DriveController(object):
 
         try:
             print "Drive:", map(lambda x: "%.4f" % x, cmd)
+            self.controller.drive(cmd[0], 50000)
         finally:
             self.stop()
 

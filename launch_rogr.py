@@ -12,7 +12,7 @@ import traceback
 from threading  import Thread
 from Queue import Queue, Empty
 
-HOME = "/home/dane/dev/xhab-rogr/"
+HOME = "/home/xhab/xhab-rogr/"
 SERVICE_DIR = os.path.join(HOME, "service_files/")
 
 ROS_NODES = ["arm_camera_controller.py",

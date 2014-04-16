@@ -19,7 +19,7 @@ class GamepadControl(object):
             y_move = gamepad.get_one(gamepad.LS_YAXIS)
             rot = gamepad.get_one(gamepad.RS_XAXIS)
 
-            threshold = 0.04
+            threshold = 0.05
             if x_move < threshold and x_move > -threshold:
                 x_move = 0
             if y_move < threshold and y_move > -threshold:

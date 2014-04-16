@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import pygame
+import pygame.joystick
 import sys
 import os
 
