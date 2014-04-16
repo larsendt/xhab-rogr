@@ -17,9 +17,9 @@ class DriveController(object):
 
     def wheel_multipliers(self, speed, angle, rot_speed):
         v1 = (speed * math.sin(angle + (math.pi / 4))) + rot_speed
-        v2 = (speed * math.cos(angle + (math.pi / 4))) - rot_speed
+        v2 = -((speed * math.cos(angle + (math.pi / 4))) - rot_speed)
         v3 = (speed * math.cos(angle + (math.pi / 4))) + rot_speed
-        v4 = (speed * math.sin(angle + (math.pi / 4))) - rot_speed
+        v4 = -((speed * math.sin(angle + (math.pi / 4))) - rot_speed)
         return v1, v2, v3, v4
 
     def rotate(self, rotate_speed):
@@ -62,9 +62,7 @@ class DriveController(object):
 
         mults = zip(xaxis, yaxis, rot)
         avgs = map(lambda x: float(sum(x))/len(x), mults)
-        t = 0.04
-        floored = map(lambda x: 0 if x < t and x > -t else x, avgs)
-        self.add_drive_cmd(floored)
+        self.add_drive_cmd(avgs)
 
     def spin(self):
         print "DriveController listening"
