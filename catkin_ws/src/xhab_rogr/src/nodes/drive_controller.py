@@ -5,9 +5,10 @@ import math
 import time
 from xhab_rogr.msg import *
 import motor_controller as mc
+import wheelmotorConfig as wmc
 
 MAX_QUEUE = 25
-SERIALS = [-1,-1,-1,-1]
+SERIALS = [wmc.FRONT_LEFT, wmc.FRONT_RIGHT, wmc.BACK_LEFT, wmc.BACK_RIGHT]
 
 class DriveController(object):
     def __init__(self):
