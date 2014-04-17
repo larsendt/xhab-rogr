@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 FRONT_LEFT=345162
 FRONT_RIGHT=345160
