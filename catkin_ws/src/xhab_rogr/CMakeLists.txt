@@ -27,22 +27,18 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
    FILES
    Alert.msg
-   ArmCameraTask.msg
    ArmTask.msg
    BatteryTask.msg
-   Camera1Task.msg
-   Camera2Task.msg
    CameraTurretTask.msg
-   CameraData.msg
    Data.msg
-   Distance.msg
-   DrivingTask.msg
-   LiftingTask.msg
+   DistanceTask.msg
+   LiftDriverTask.msg
    NutrientPumpTask.msg
    NutrientTankTask.msg
    PressureTask.msg
    WaterPumpTask.msg
    WaterTankTask.msg
+   WheelDriverTask.msg
  )
 
 ## Generate services in the 'srv' folder
