@@ -7,6 +7,7 @@ from xhab_rogr.msg import *
 import motor_controller as mc
 
 MAX_QUEUE = 25
+SERIALS = [-1,-1,-1,-1]
 
 class DriveController(object):
     def __init__(self):
@@ -15,8 +16,12 @@ class DriveController(object):
         subtopic = "/tasks/rogr/drive"
         self.sub = rospy.Subscriber(subtopic, DrivingTask, self.callback)
         self.drive_queue = []
-        self.controller = mc.MotorController(10000, 15000)
-        self.controller.attach()
+
+        self.controllers = []
+        for sn in SERIALS:
+            c = mc.MotorController(10000, 15000)
+            c.atttach()
+            self.controllers.append((sn, c))
 
     def wheel_multipliers(self, speed, angle, rot_speed):
         v1 = (speed * math.sin(angle + (math.pi / 4))) + rot_speed
@@ -55,7 +60,8 @@ class DriveController(object):
 
         try:
             print "Drive:", map(lambda x: "%.4f" % x, cmd)
-            self.controller.drive(cmd[0], 50000)
+            for cmd, (sn, c) in zip(cmd, self.controllers):
+                c.drive(cmd, 50000)
         finally:
             self.stop()
 
