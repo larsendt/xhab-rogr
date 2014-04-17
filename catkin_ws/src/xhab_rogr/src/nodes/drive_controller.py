@@ -61,8 +61,8 @@ class DriveController(object):
 
         try:
             print "Drive:", map(lambda x: "%.4f" % x, cmd)
-            for cmd, (sn, c) in zip(cmd, self.controllers):
-                c.drive(cmd, 50000)
+            for i, (sn, c) in enumerate(self.controllers):
+                c.drive(cmd[i], 50000)
         finally:
             self.stop()
 
