@@ -60,6 +60,10 @@ class MotorController(object):
 
         self.stepper.setTargetPosition(0, self.current_position)
 
+    def set_position(self, position):
+        self.current_position = position
+        self.stepper.setTargetPosition(0, self.current_position)
+
 
 if __name__ == "__main__":
     c = MotorController(5000, 50000)
