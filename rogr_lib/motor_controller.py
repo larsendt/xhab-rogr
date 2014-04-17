@@ -14,16 +14,17 @@ from Phidgets.Devices.Stepper import Stepper
 
 
 class MotorController(object):
-    def __init__(self, vel=5000, acc=5000):
+    def __init__(self, vel=5000, acc=5000, serial=-1):
         self.stepper = Stepper()
         self.current_position = 0
         self.base_velocity = vel
         self.acceleration = acc
+        self.serial = serial
 
     def attach(self):
         try:
             print "Opening Phidget..."
-            self.stepper.openPhidget()
+            self.stepper.openPhidget(self.serial)
         except PhidgetException as e:
             print "Phidget Exception %i: %s" % (e.code, e.details)
 
