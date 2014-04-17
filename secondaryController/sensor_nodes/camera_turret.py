@@ -33,7 +33,7 @@ def initTurret():
 
 def moveTurret(hndl,panangle,tiltangle):
 	pan = int(float(panangle*40/180) + 10)
-	tilt = int(float(tiltangle*40/180) + 10) 
+	tilt = int(float(tiltangle*40/180) + 10)
 	# tilt down
 	if (tilt <= 50 and tilt >= 10):
 		i = sub_pwm_set( hndl, 5, tilt )
@@ -43,6 +43,6 @@ def moveTurret(hndl,panangle,tiltangle):
 		i = sub_pwm_set( hndl, 4, pan )
 	time.sleep(0.1)
 
-sub = initTurret()
-moveTurret(sub, 30, 50 )
+#sub = initTurret()
+#moveTurret(sub, 180, 180 )
 
