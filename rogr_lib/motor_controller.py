@@ -64,6 +64,15 @@ class MotorController(object):
         self.current_position = position
         self.stepper.setTargetPosition(0, self.current_position)
 
+    def move_position(self, pos_delta, upper_bound, lower_bound):
+        self.current_position += pos_delta
+        if self.current_position > upper_bound:
+            self.current_position = upper_bound
+        elif self.current_position < lower_bound:
+            self.current_position = lower_bound
+
+        self.stepper.setTargetPosition(0, self.current_position)
+
 
 if __name__ == "__main__":
     c = MotorController(5000, 50000)

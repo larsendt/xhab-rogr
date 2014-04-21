@@ -32,13 +32,13 @@ add_message_files(
    CameraTurretTask.msg
    Data.msg
    DistanceTask.msg
-   LiftDriverTask.msg
+   LiftingTask.msg
+   DrivingTask.msg
    NutrientPumpTask.msg
    NutrientTankTask.msg
    PressureTask.msg
    WaterPumpTask.msg
    WaterTankTask.msg
-   WheelDriverTask.msg
  )
 
 ## Generate services in the 'srv' folder

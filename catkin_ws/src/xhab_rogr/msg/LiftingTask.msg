@@ -1,5 +1,5 @@
 string source = rogr
 string target = liftingmechanism
 time timestamp
-int8 lift
+float32 lift
 

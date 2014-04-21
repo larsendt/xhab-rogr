@@ -1,5 +1,5 @@
 string source = rogr
 string target = distancesensor
-int sensor_id 
+int8 sensor_id
 time timestamp
 

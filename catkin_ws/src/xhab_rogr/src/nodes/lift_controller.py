@@ -4,8 +4,12 @@ import rospy
 import math
 import time
 from xhab_rogr.msg import *
+import motor_controller as mc
 
 MAX_QUEUE = 25
+SERIAL = 344945
+LOWER_BOUND = 0
+UPPER_BOUND = 1000
 
 class LiftController(object):
     def __init__(self):
@@ -14,6 +18,7 @@ class LiftController(object):
         subtopic = "/tasks/rogr/lift"
         self.sub = rospy.Subscriber(subtopic, LiftingTask, self.callback)
         self.lift_queue = []
+        self.controller = mc.MotorController(5000, 15000, SERIAL)
 
     def get_lift_cmd(self):
         if len(self.lift_queue) > 0:
@@ -24,38 +29,26 @@ class LiftController(object):
     def add_lift_cmd(self, cmd):
         if len(self.lift_queue) < MAX_QUEUE:
             self.lift_queue.insert(0, cmd)
-            print "lift queue len is:", len(self.lift_queue)
-        else:
-            print "lift queue is full"
 
     def stop(self):
+        self.controller.move_position(0, UPPER_BOUND, LOWER_BOUND)
         pass
 
     def lift(self, cmd):
         if cmd is None:
             self.stop()
-            time.sleep(0.2)
             return
 
         try:
             print "Lift:", cmd
-            time.sleep(0.2)
+            self.controller.move_position(int(100 * cmd), UPPER_BOUND, LOWER_BOUND)
         finally:
             self.stop()
 
     def callback(self, msg):
-        print "got msg"
-        if msg.lift > 0:
-            print "lift up"
-            cmd = 0.1
-        elif msg.lift < 0:
-            print "lift down"
-            cmd = -0.1
-        else:
-            print "lift stop"
-            cmd = 0.0
-
-        self.add_lift_cmd(cmd)
+        print type(msg.lift)
+        print msg.lift
+        self.add_lift_cmd(msg.lift)
 
     def spin(self):
         print "LiftController listening"
