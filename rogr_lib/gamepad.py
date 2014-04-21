@@ -49,9 +49,15 @@ NAMES = ["LS_XAXIS",
          "DPAD_XAXIS",
          "DPAD_YAXIS"]
 
+# triggers don't initialize right
+INIT_LT = True
+INIT_RT = True
+
 def get_all():
+    global INIT_LT, INIT_RT
     out = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     # these two don't initialize right
+
     out[BTN_LT] = -1
     out[BTN_RT] = -1
     it = 0
@@ -61,6 +67,19 @@ def get_all():
 
     for i in range(0, j.get_numaxes()):
         out[it] = j.get_axis(i)
+        # triggers start out at 0, but their base position is actually -1,
+        # not sure why this is happening, but it's fixed
+        if INIT_LT and it == BTN_LT:
+            if out[it] == 0:
+                out[it] = -1
+            else:
+                INIT_LT = False
+
+        if INIT_RT and it == BTN_RT:
+            if out[it] == 0:
+                out[it] = -1
+            else:
+                INIT_RT = False
         if out[it] < threshold and out[it] > -threshold:
             out[it] = 0
         it+=1
@@ -80,9 +99,21 @@ def get_all():
     return out
 
 def get_one(item):
+    global INIT_LT, INIT_RT
     pygame.event.pump()
     if item < j.get_numaxes():
-        return j.get_axis(item)
+        btn = j.get_axis(item)
+        if INIT_LT and item == BTN_LT:
+            if btn == 0:
+                btn = -1
+            else:
+                INIT_LT = False
+        if INIT_RT and item == BTN_RT:
+            if btn == 0:
+                btn = -1
+            else:
+                INIT_RT = False
+        return btn
     elif item < (j.get_numaxes() + j.get_numbuttons()):
         return j.get_button(item - j.get_numaxes())
     elif item < (j.get_numaxes() + j.get_numbuttons() + j.get_numhats()):
