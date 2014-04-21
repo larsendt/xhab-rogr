@@ -18,7 +18,8 @@ class LiftController(object):
         subtopic = "/tasks/rogr/lift"
         self.sub = rospy.Subscriber(subtopic, LiftingTask, self.callback)
         self.lift_queue = []
-        self.controller = mc.MotorController(5000, 15000, SERIAL)
+        self.controller = mc.MotorController(25000, 55000, SERIAL)
+        self.controller.attach()
 
     def get_lift_cmd(self):
         if len(self.lift_queue) > 0:
@@ -31,7 +32,7 @@ class LiftController(object):
             self.lift_queue.insert(0, cmd)
 
     def stop(self):
-        self.controller.move_position(0, UPPER_BOUND, LOWER_BOUND)
+        #self.controller.move_position(0, UPPER_BOUND, LOWER_BOUND)
         pass
 
     def lift(self, cmd):
@@ -41,13 +42,12 @@ class LiftController(object):
 
         try:
             print "Lift:", cmd
-            self.controller.move_position(int(100 * cmd), UPPER_BOUND, LOWER_BOUND)
+            #self.controller.move_position(int(100 * cmd), UPPER_BOUND, LOWER_BOUND)
+            self.controller.drive(cmd, 50000)
         finally:
             self.stop()
 
     def callback(self, msg):
-        print type(msg.lift)
-        print msg.lift
         self.add_lift_cmd(msg.lift)
 
     def spin(self):
