@@ -17,7 +17,7 @@ class PressureSensor(object):
         self.pub = rospy.Publisher(pubtopic, Data)
         self.sub = rospy.Subscriber(subtopic, PressureTask, self.callback)
         self.reading = 7.0
-            
+
 
     def callback(self, msg):
         print "got msg, target =", msg.target
@@ -27,7 +27,6 @@ class PressureSensor(object):
         print "PressureSensor listening"
         while not rospy.is_shutdown():
             pubmsg = Data()
-            pubmsg.source = "rogr"
             pubmsg.property = "pressure"
             pubmsg.timestamp = rospy.Time.now()
             pubmsg.value = self.reading
