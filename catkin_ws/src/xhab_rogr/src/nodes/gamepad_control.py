@@ -13,18 +13,30 @@ class GamepadControl(object):
         self.drive_pub = rospy.Publisher(pubtopic, DrivingTask)
         pubtopic = "/tasks/rogr/lift"
         self.lift_pub = rospy.Publisher(pubtopic, LiftingTask)
+        pubtopic = "/tasks/rogr/arm"
+        self.arm_pub = rospy.Publisher(pubtopic, ArmTask)
 
     def spin(self):
-        lift_on = False
+        shoulder = 180
+        elbow1 = 180
+        elbow2 = 180
+        wrist = 180
         while not rospy.is_shutdown():
             drive_msg = DrivingTask()
             lift_msg = LiftingTask()
+            arm_msg = ArmTask()
+
             x_move = gamepad.get_one(gamepad.LS_XAXIS)
             y_move = gamepad.get_one(gamepad.LS_YAXIS)
             rot = gamepad.get_one(gamepad.RS_XAXIS)
             lift_up = gamepad.get_one(gamepad.BTN_LT)
             lift_down = gamepad.get_one(gamepad.BTN_RT)
-            lift_toggle = gamepad.get_one(gamepad.BTN_A)
+            shoulder_mode = gamepad.get_one(gamepad.BTN_A)
+            elbow1_mode = gamepad.get_one(gamepad.BTN_X)
+            elbow2_mode = gamepad.get_one(gamepad.BTN_Y)
+            wrist_mode = gamepad.get_one(gamepad.BTN_B)
+            arm_neg_move = gamepad.get_one(gamepad.BTN_RB)
+            arm_pos_move = gamepad.get_one(gamepad.BTN_LB)
 
             threshold = 0.05
             if x_move < threshold and x_move > -threshold:
@@ -41,6 +53,38 @@ class GamepadControl(object):
             else:
                 lift = 0
 
+
+            if arm_neg_move:
+                arm_mv_amt = -5
+            elif arm_pos_move:
+                arm_mv_amt = 5
+            else:
+                arm_mv_amt = 0
+
+            clamp = lambda (x,_min,_max): min(_max, max(_min, x))
+
+            if arm_mv_amt != 0:
+                if shoulder_mode:
+                    shoulder += arm_mv_amt
+                    shoulder = clamp((shoulder, 90, 220))
+                    print "SHOULDER", shoulder
+
+                if elbow1_mode:
+                    elbow1 += arm_mv_amt
+                    elbow1 = clamp((elbow1, 45, 300))
+                    print "ELBOW 1", elbow1
+
+                if elbow2_mode:
+                    elbow2 += arm_mv_amt
+                    elbow2 = clamp((elbow2, 75, 280))
+                    print "ELBOW 2", elbow2
+
+                if wrist_mode:
+                    wrist += arm_mv_amt
+                    wrist = clamp((wrist, -360, 360))
+                    print "WRIST", wrist
+
+
             print "Drive: x:%.03f, y:%.03f, rot:%.03f" % (x_move, y_move, rot)
             print "Lift: %.03f" % lift
 
@@ -51,6 +95,14 @@ class GamepadControl(object):
 
             lift_msg.lift = lift
             self.lift_pub.publish(lift_msg)
+
+            arm_msg.shoulder1_angle = shoulder
+            arm_msg.shoulder2_angle = shoulder
+            arm_msg.elbow1_angle = elbow1
+            arm_msg.elbow2_angle = elbow2
+            arm_msg.wrist_angle = wrist
+            arm_msg.endeffector_angle = 0
+            self.arm_pub.publish(arm_msg)
 
             time.sleep(0.05)
 
