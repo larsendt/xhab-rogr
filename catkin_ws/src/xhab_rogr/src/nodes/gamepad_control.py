@@ -21,6 +21,7 @@ class GamepadControl(object):
         elbow1 = 180
         elbow2 = 180
         wrist = 180
+        end_effector = 0
         while not rospy.is_shutdown():
             drive_msg = DrivingTask()
             lift_msg = LiftingTask()
@@ -35,6 +36,7 @@ class GamepadControl(object):
             elbow1_mode = gamepad.get_one(gamepad.BTN_X)
             elbow2_mode = gamepad.get_one(gamepad.BTN_Y)
             wrist_mode = gamepad.get_one(gamepad.BTN_B)
+            end_effector_mode = gamepad.get_one(gamepad.DPAD_YAXIS)
             arm_neg_move = gamepad.get_one(gamepad.BTN_RB)
             arm_pos_move = gamepad.get_one(gamepad.BTN_LB)
 
@@ -55,9 +57,9 @@ class GamepadControl(object):
 
 
             if arm_neg_move:
-                arm_mv_amt = -5
+                arm_mv_amt = -1
             elif arm_pos_move:
-                arm_mv_amt = 5
+                arm_mv_amt = 1
             else:
                 arm_mv_amt = 0
 
@@ -84,6 +86,10 @@ class GamepadControl(object):
                     wrist = clamp((wrist, -360, 360))
                     print "WRIST", wrist
 
+            if end_effector_mode != 0:
+                end_effector += end_effector_mode * 5
+                end_effector = clamp((end_effector, -360, 360))
+                print "END EFFECTOR:", end_effector
 
             print "Drive: x:%.03f, y:%.03f, rot:%.03f" % (x_move, y_move, rot)
             print "Lift: %.03f" % lift
@@ -101,7 +107,7 @@ class GamepadControl(object):
             arm_msg.elbow1_angle = elbow1
             arm_msg.elbow2_angle = elbow2
             arm_msg.wrist_angle = wrist
-            arm_msg.endeffector_angle = 0
+            arm_msg.endeffector_angle = end_effector
             self.arm_pub.publish(arm_msg)
 
             time.sleep(0.05)
