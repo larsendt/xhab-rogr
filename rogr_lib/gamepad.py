@@ -116,8 +116,12 @@ def get_one(item):
         return btn
     elif item < (j.get_numaxes() + j.get_numbuttons()):
         return j.get_button(item - j.get_numaxes())
-    elif item < (j.get_numaxes() + j.get_numbuttons() + j.get_numhats()):
-        return j.get_hat(item - (j.get_numaxes() + j.get_numbuttons()))
+    elif item < (j.get_numaxes() + j.get_numbuttons() + j.get_numhats() + 1):
+        hat = item - (j.get_numaxes() + j.get_numbuttons())
+        if hat == 0:
+            return j.get_hat(hat/2)[0]
+        else:
+            return j.get_hat(hat/2)[1]
     else:
         print "Unknown item:", item
         return None
