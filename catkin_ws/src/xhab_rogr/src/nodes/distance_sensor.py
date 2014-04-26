@@ -18,8 +18,8 @@ class DistanceSensor(object):
         self.sub = rospy.Subscriber(subtopic, DistanceTask, self.callback)
         self.id = 1
         self.reading = 7.0
-        
-            
+
+
     def callback(self, msg):
         print "got msg, target =", msg.target
         print "read distance value:", self.reading
@@ -28,7 +28,6 @@ class DistanceSensor(object):
         print "DistanceSensor listening"
         while not rospy.is_shutdown():
             pubmsg = Data()
-            pubmsg.source = "rogr"
             pubmsg.property = "distance"
             pubmsg.timestamp = rospy.Time.now()
             pubmsg.sensor_id = self.id

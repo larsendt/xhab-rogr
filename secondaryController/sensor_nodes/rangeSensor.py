@@ -11,7 +11,7 @@ MAX_VOLT = 5
 MAX_ADC = 1023
 
 def getDistance(direction):
-  #open device 	
+  #open device
   devid = sub_open(0)
   #enable ADC module
   sub_adc_config(devid, 0x8040)#enable ADC with VCC ref
@@ -27,11 +27,15 @@ def getDistance(direction):
   #read getdistance
   rt,distance = sub_adc_single(devid,adcpin)
   #calibration
+  #print distance.value
   real_distance = 27/((float)(distance.value)*MAX_VOLT/MAX_ADC)
+  print real_distance
   #close device
   sub_close(devid)
   #return distance
   return real_distance
-  
-  
+
+getDistance(1)
+
+
 

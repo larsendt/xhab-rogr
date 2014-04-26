@@ -18,6 +18,7 @@ from rogrpins import *
 
 def initTurret():
 	hndl = sub_open(0)
+        #print hndl
 
         # Set PWM resolution=50us, limit=250, frequency=80Hz */
 	i = sub_pwm_config( hndl, 50, 250 )
@@ -25,24 +26,29 @@ def initTurret():
 	i = sub_gpio_config( hndl, 0x30000000, 0x30000000 )
 
 	# set values to 90 degree angle to keep the camera centered
-	pan = 30
-	tilt = 30
+	pan = 90
+	tilt = 90
 	sub_pwm_set( hndl, 4, pan )
 	sub_pwm_set( hndl, 5, tilt )
 	return hndl
 
 def moveTurret(hndl,panangle,tiltangle):
 	pan = int(float(panangle*40/180) + 10)
+        #print pan
 	tilt = int(float(tiltangle*40/180) + 10)
+        #print tilt
 	# tilt down
 	if (tilt <= 50 and tilt >= 10):
 		i = sub_pwm_set( hndl, 5, tilt )
+                #print i
 	time.sleep(0.1)
 
 	if (pan <= 50 and pan >= 10):
 		i = sub_pwm_set( hndl, 4, pan )
+                #print i
 	time.sleep(0.1)
 
-#sub = initTurret()
-#moveTurret(sub, 180, 180 )
+sub = initTurret()
+#print sub
+moveTurret(sub, 90, 90)
 

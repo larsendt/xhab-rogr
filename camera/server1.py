@@ -10,10 +10,10 @@ pygame.init()
 import SimpleCV as scv
 
 app = Flask(__name__)
-cam = scv.Camera(0)
+cam = scv.Camera(1)
 
 
-@app.route('/camera')
+@app.route('/camera1')
 def camera():
 
     if request.environ.get('wsgi.websocket'):
@@ -30,5 +30,5 @@ def camera():
 
 if __name__ == '__main__':
     #put ROGR's ip address here
-    http_server = WSGIServer(("10.203.75.78",8080), app, handler_class=WebSocketHandler)
+    http_server = WSGIServer(("10.201.24.53",5000), app, handler_class=WebSocketHandler)
     http_server.serve_forever()

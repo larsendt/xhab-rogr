@@ -8,7 +8,7 @@ import motor_controller as mc
 import wheelmotorConfig as wmc
 
 MAX_QUEUE = 25
-SERIALS = [wmc.FRONT_LEFT, wmc.FRONT_RIGHT, wmc.BACK_LEFT, wmc.BACK_RIGHT]
+SERIALS = [wmc.FRONT_LEFT, wmc.FRONT_RIGHT, wmc.BACK_RIGHT, wmc.BACK_LEFT]
 
 class DriveController(object):
     def __init__(self):
@@ -20,15 +20,15 @@ class DriveController(object):
 
         self.controllers = []
         for sn in SERIALS:
-            c = mc.MotorController(10000, 15000)
+            c = mc.MotorController(10000, 15000, sn)
             c.attach()
             self.controllers.append((sn, c))
 
     def wheel_multipliers(self, speed, angle, rot_speed):
-        v1 = ((speed * math.sin(angle + (math.pi / 4))) + rot_speed)
-        v2 = -((speed * math.cos(angle + (math.pi / 4))) - rot_speed)
+        v1 = -((speed * math.sin(angle + (math.pi / 4))) + rot_speed)
+        v2 = ((speed * math.cos(angle + (math.pi / 4))) - rot_speed)
         v3 = -((speed * math.cos(angle + (math.pi / 4))) + rot_speed)
-        v4 = ((speed * math.sin(angle + (math.pi / 4))) - rot_speed)
+        v4 = -((speed * math.sin(angle + (math.pi / 4))) - rot_speed)
         return v1, v2, v3, v4
 
     def rotate(self, rotate_speed):
@@ -67,9 +67,9 @@ class DriveController(object):
             self.stop()
 
     def callback(self, msg):
-        xaxis = self.translate(math.pi/2, -msg.rot)
+        xaxis = self.translate(math.pi/2, msg.trans_x)
         yaxis = self.translate(0, msg.trans_y)
-        rot = self.rotate(msg.trans_x)
+        rot = self.rotate(msg.rot)
 
         mults = zip(xaxis, yaxis, rot)
         avgs = map(lambda x: float(sum(x))/len(x), mults)

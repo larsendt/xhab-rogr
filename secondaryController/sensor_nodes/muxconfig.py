@@ -7,7 +7,7 @@ MAX_ADC = 1023
 HIGH_ADC = 923
 MIN_ADC = 0
 LOW_ADC = 100
-RESISTANCE = 27000 ##27kom, need update when circuit change
+RESISTANCE = 330 ##27kom, need update when circuit change
 
 #pressure sensor selection
 PLEFT = 0
@@ -41,17 +41,17 @@ channelToValue = { MUX_WATER_LEVEL0_PIN: 0x00000000,
             MUX_LEFT_PRESSURE_SENSOR_PIN: setpin(GPIO_MUX_S1_PIN) | setpin(GPIO_MUX_S2_PIN),
             MUX_RIGHT_PRESSURE_SENSOR_PIN: setpin(GPIO_MUX_S0_PIN) | setpin(GPIO_MUX_S1_PIN) | setpin(GPIO_MUX_S2_PIN),
             }
-            
+
 muxmask = setpin(GPIO_MUX_ENABLE_PIN) | setpin(GPIO_MUX_S0_PIN) | setpin(GPIO_MUX_S1_PIN) | setpin(GPIO_MUX_S2_PIN)
 
 def getSelectValue(pin):
   return(channelToValue[pin])
-  
+
 
 def adcRangeToValue(val):
   adcval = val.value
   #print "adcvalue: " + str(adcval)
-  
+
   if(adcval <= MAX_ADC and adcval >= HIGH_ADC):
     return(1)
   elif(adcval >= MIN_ADC and adcval <= LOW_ADC):
@@ -68,6 +68,6 @@ def adcRangeToValue(val):
   '''
 
 
-            
 
- 
+
+

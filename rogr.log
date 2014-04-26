@@ -1,0 +1,176 @@
+Starting ROS Core [pid=10130]
+Launching 10 services
+Launch: arm_control.py [pid=10131]
+Launch: battery_sensor.py [pid=10134]
+Launch: distance_sensor.py [pid=10138]
+Launch: drive_controller.py [pid=10142]
+Launch: lift_controller.py [pid=10148]
+Launch: nutrient_controller.py [pid=10155]
+Launch: nutrient_monitor.py [pid=10164]
+Launch: pressure_sensor.py [pid=10171]
+Launch: water_controller.py [pid=10179]
+Launch: water_monitor.py [pid=10185]
+Monitoring services
+Service 'rosrun xhab_rogr arm_control.py' exited with return code 1!
+
+===============================================
+Traceback (most recent call last):
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 57, in <module>
+    p = ArmControl()
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 24, in __init__
+    USB1 = USB2Dynamixel_Device(USBPaths[1])
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 53, in __init__
+    self._open_serial( baudrate )
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 85, in _open_serial
+    raise RuntimeError('lib_robotis: Serial port not found!\n')
+RuntimeError: lib_robotis: Serial port not found!
+
+
+===============================================
+
+Marked service as not alive
+Attempting to restart service
+Launch: arm_control.py [pid=10446]
+Hopefully restarted service
+Service 'rosrun xhab_rogr arm_control.py' exited with return code 1!
+
+===============================================
+Traceback (most recent call last):
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 57, in <module>
+    p = ArmControl()
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 24, in __init__
+    USB1 = USB2Dynamixel_Device(USBPaths[1])
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 53, in __init__
+    self._open_serial( baudrate )
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 85, in _open_serial
+    raise RuntimeError('lib_robotis: Serial port not found!\n')
+RuntimeError: lib_robotis: Serial port not found!
+
+Traceback (most recent call last):
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 57, in <module>
+    p = ArmControl()
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 24, in __init__
+    USB1 = USB2Dynamixel_Device(USBPaths[1])
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 53, in __init__
+    self._open_serial( baudrate )
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 85, in _open_serial
+    raise RuntimeError('lib_robotis: Serial port not found!\n')
+RuntimeError: lib_robotis: Serial port not found!
+
+
+===============================================
+
+Marked service as not alive
+Attempting to restart service
+Launch: arm_control.py [pid=10478]
+Hopefully restarted service
+Service 'rosrun xhab_rogr arm_control.py' exited with return code 1!
+
+===============================================
+Traceback (most recent call last):
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 57, in <module>
+    p = ArmControl()
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 24, in __init__
+    USB1 = USB2Dynamixel_Device(USBPaths[1])
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 53, in __init__
+    self._open_serial( baudrate )
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 85, in _open_serial
+    raise RuntimeError('lib_robotis: Serial port not found!\n')
+RuntimeError: lib_robotis: Serial port not found!
+
+Traceback (most recent call last):
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 57, in <module>
+    p = ArmControl()
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 24, in __init__
+    USB1 = USB2Dynamixel_Device(USBPaths[1])
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 53, in __init__
+    self._open_serial( baudrate )
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 85, in _open_serial
+    raise RuntimeError('lib_robotis: Serial port not found!\n')
+RuntimeError: lib_robotis: Serial port not found!
+
+Traceback (most recent call last):
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 57, in <module>
+    p = ArmControl()
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 24, in __init__
+    USB1 = USB2Dynamixel_Device(USBPaths[1])
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 53, in __init__
+    self._open_serial( baudrate )
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 85, in _open_serial
+    raise RuntimeError('lib_robotis: Serial port not found!\n')
+RuntimeError: lib_robotis: Serial port not found!
+
+
+===============================================
+
+Marked service as not alive
+Attempting to restart service
+Launch: arm_control.py [pid=10501]
+Hopefully restarted service
+Service 'rosrun xhab_rogr arm_control.py' exited with return code 1!
+
+===============================================
+Traceback (most recent call last):
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 57, in <module>
+    p = ArmControl()
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 24, in __init__
+    USB1 = USB2Dynamixel_Device(USBPaths[1])
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 53, in __init__
+    self._open_serial( baudrate )
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 85, in _open_serial
+    raise RuntimeError('lib_robotis: Serial port not found!\n')
+RuntimeError: lib_robotis: Serial port not found!
+
+Traceback (most recent call last):
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 57, in <module>
+    p = ArmControl()
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 24, in __init__
+    USB1 = USB2Dynamixel_Device(USBPaths[1])
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 53, in __init__
+    self._open_serial( baudrate )
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 85, in _open_serial
+    raise RuntimeError('lib_robotis: Serial port not found!\n')
+RuntimeError: lib_robotis: Serial port not found!
+
+Traceback (most recent call last):
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 57, in <module>
+    p = ArmControl()
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 24, in __init__
+    USB1 = USB2Dynamixel_Device(USBPaths[1])
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 53, in __init__
+    self._open_serial( baudrate )
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 85, in _open_serial
+    raise RuntimeError('lib_robotis: Serial port not found!\n')
+RuntimeError: lib_robotis: Serial port not found!
+
+Traceback (most recent call last):
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 57, in <module>
+    p = ArmControl()
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 24, in __init__
+    USB1 = USB2Dynamixel_Device(USBPaths[1])
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 53, in __init__
+    self._open_serial( baudrate )
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 85, in _open_serial
+    raise RuntimeError('lib_robotis: Serial port not found!\n')
+RuntimeError: lib_robotis: Serial port not found!
+
+
+===============================================
+
+Marked service as not alive
+Attempting to restart service
+Launch: arm_control.py [pid=10528]
+Hopefully restarted service
+Terminating all services
+Kill: arm_control.py [pid=10528]
+Kill: battery_sensor.py [pid=10134]
+Kill: distance_sensor.py [pid=10138]
+Kill: drive_controller.py [pid=10142]
+Kill: lift_controller.py [pid=10148]
+Kill: nutrient_controller.py [pid=10155]
+Kill: nutrient_monitor.py [pid=10164]
+Kill: pressure_sensor.py [pid=10171]
+Kill: water_controller.py [pid=10179]
+Kill: water_monitor.py [pid=10185]
+Killing ROS Core [pid=10130]
+Done

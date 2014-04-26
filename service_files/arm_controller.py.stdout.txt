@@ -1,0 +1,3 @@
+Initializing Service: arm_controller.py
+[rosrun] Couldn't find executable named arm_controller.py below /home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr
+[rosrun] Couldn't find executable named arm_controller.py below /home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr

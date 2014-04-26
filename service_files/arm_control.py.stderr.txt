@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 57, in <module>
+    p = ArmControl()
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/arm_control.py", line 24, in __init__
+    USB1 = USB2Dynamixel_Device(USBPaths[1])
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 53, in __init__
+    self._open_serial( baudrate )
+  File "/home/xhab/xhab-rogr/catkin_ws/src/xhab_rogr/src/nodes/lib_robotis.py", line 85, in _open_serial
+    raise RuntimeError('lib_robotis: Serial port not found!\n')
+RuntimeError: lib_robotis: Serial port not found!
+

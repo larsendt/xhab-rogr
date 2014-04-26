@@ -7,7 +7,7 @@ from muxconfig import *
 
 
 def getPressureLevel(direction):
-  #open device 	
+  #open device
   devid = sub_open(0)
   #enable ADC with VCC ref
   sub_adc_config(devid, 0x8040)
@@ -21,11 +21,24 @@ def getPressureLevel(direction):
   else:
     return(-1)
   rt,status = sub_gpio_write(devid,selectval,muxmask)
-  #read READPRESSURELEVEL 
+  #read READPRESSURELEVEL
   rt,level = sub_adc_single(devid,ADC_MUX_SIGNAL_PIN)
   #calibration, depends on circuit, value in resistance
-  real_force = ((float)(RESISTANCE*level.value)/(1-(level.value/MAX_ADC)))
-  return real_force
-	
-	
-	
+  print "level.value"
+  print level.value
+  V = (float)((5.00/MAX_ADC)*level.value)
+  print "MAX_ADC"
+  print MAX_ADC
+  print "V"
+  print V
+  if (V != 0):
+    real_force = (float)(RESISTANCE*((5.00-V)/V))
+    print "real_force"
+    print real_force
+    return real_force
+  else:
+    print "I want SPOT"
+
+
+#getPressureLevel(1)
+getPressureLevel(0)

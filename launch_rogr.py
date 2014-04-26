@@ -12,10 +12,10 @@ import traceback
 from threading  import Thread
 from Queue import Queue, Empty
 
-HOME = "/home/dane/dev/xhab-rogr/"
+HOME = "/home/xhab/xhab-rogr/"
 SERVICE_DIR = os.path.join(HOME, "service_files/")
 
-ROS_NODES = ["arm_controller.py",
+ROS_NODES = ["arm_control.py",
              "battery_sensor.py",
              "distance_sensor.py",
              "drive_controller.py",

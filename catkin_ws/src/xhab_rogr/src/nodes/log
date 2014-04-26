@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "gamepad_control.py", line 4, in <module>
+    import gamepad
+  File "/home/xhab/xhab-rogr/rogr_lib/gamepad.py", line 8, in <module>
+    j = pygame.joystick.Joystick(0)
+pygame.error: Invalid joystick device number

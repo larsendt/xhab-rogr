@@ -23,7 +23,7 @@ class MotorController(object):
 
     def attach(self):
         try:
-            print "Opening Phidget..."
+            print "Opening Phidget... (serial:", self.serial, ")"
             self.stepper.openPhidget(self.serial)
         except PhidgetException as e:
             print "Phidget Exception %i: %s" % (e.code, e.details)
@@ -36,7 +36,8 @@ class MotorController(object):
             self.stepper.closePhidget()
 
         print "Setting limits..."
-        self.stepper.setCurrentPosition(0, 0)
+        self.current_position = self.stepper.getCurrentPosition(0)
+        self.stepper.setCurrentPosition(0, self.current_position)
         self.stepper.setEngaged(0, True)
         self.stepper.setAcceleration(0, self.acceleration)
         self.stepper.setVelocityLimit(0, self.base_velocity)

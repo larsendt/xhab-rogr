@@ -2,7 +2,7 @@
 #
 # Copyright (c) 2009, Georgia Tech Research Corporation
 # All rights reserved.
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
 #     * Redistributions of source code must retain the above copyright
@@ -13,7 +13,7 @@
 #     * Neither the name of the Georgia Tech Research Corporation nor the
 #       names of its contributors may be used to endorse or promote products
 #       derived from this software without specific prior written permission.
-# 
+#
 # THIS SOFTWARE IS PROVIDED BY GEORGIA TECH RESEARCH CORPORATION ''AS IS'' AND
 # ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 # WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -73,7 +73,7 @@ class USB2Dynamixel_Device():
             self.servo_dev = serial.Serial(self.dev_name, baudrate, timeout=1.0)
             # Closing the device first seems to prevent "Access Denied" errors on WinXP
             # (Conversations with Brian Wu @ MIT on 6/23/2010)
-            self.servo_dev.close()  
+            self.servo_dev.close()
             self.servo_dev.setParity('N')
             self.servo_dev.setStopbits(1)
             self.servo_dev.open()
@@ -109,7 +109,7 @@ class Robotis_Servo():
             defaults = {
                 'home_encoder': 0x7FF,
                 'max_encoder': 0xFFF,
-                'rad_per_enc': math.radians(360.0) / 0xFFF, 
+                'rad_per_enc': math.radians(360.0) / 0xFFF,
                 'max_ang': math.radians(180),
                 'min_ang': math.radians(-180),
                 'flipped': False,
@@ -119,13 +119,13 @@ class Robotis_Servo():
             defaults = {
                 'home_encoder': 0x200,
                 'max_encoder': 0x3FF,  # Assumes 0 is min.
-                'rad_per_enc': math.radians(300.0) / 1024.0, 
+                'rad_per_enc': math.radians(300.0) / 1024.0,
                 'max_ang': math.radians(148),
                 'min_ang': math.radians(-148),
                 'flipped': False,
                 'max_speed': math.radians(100)
                 }
-                
+
 
         # Error Checking
         if USB2Dynamixel == None:
@@ -165,7 +165,7 @@ class Robotis_Servo():
 
     def init_cont_turn(self):
         '''sets CCW angle limit to zero and allows continuous turning (good for wheels).
-        After calling this method, simply use 'set_angvel' to command rotation.  This 
+        After calling this method, simply use 'set_angvel' to command rotation.  This
         rotation is proportional to torque according to Robotis documentation.
         '''
         self.write_address(0x08, [0,0])
@@ -234,7 +234,7 @@ class Robotis_Servo():
             print 'lib_robotis.move_angle: angle out of range- ', math.degrees(ang)
             print 'lib_robotis.ignoring move command.'
             return
-        
+
         self.set_angvel(angvel)
 
         if self.settings['flipped']:
@@ -252,7 +252,7 @@ class Robotis_Servo():
         '''
         # In some border cases, we can end up above/below the encoder limits.
         #   eg. int(round(math.radians( 180 ) / ( math.radians(360) / 0xFFF ))) + 0x7FF => -1
-        n = min( max( n, 0 ), self.settings['max_encoder'] ) 
+        n = min( max( n, 0 ), self.settings['max_encoder'] )
         hi,lo = n / 256, n % 256
         return self.write_address( 0x1e, [lo,hi] )
 
@@ -264,14 +264,14 @@ class Robotis_Servo():
 
     def set_angvel(self, angvel):
         ''' angvel - in rad/sec
-        '''     
+        '''
         rpm = angvel / (2 * math.pi) * 60.0
         angvel_enc = int(round( rpm / 0.111 ))
         if angvel_enc<0:
             hi,lo = abs(angvel_enc) / 256 + 4, abs(angvel_enc) % 256
         else:
             hi,lo = angvel_enc / 256, angvel_enc % 256
-        
+
         return self.write_address( 0x20, [lo,hi] )
 
     def write_id(self, id):
@@ -305,7 +305,7 @@ class Robotis_Servo():
         msg = [ id, len(instruction) + 1 ] + instruction # instruction includes the command (1 byte + parameters. length = parameters+2)
         chksum = self.__calc_checksum( msg )
         msg = [ 0xff, 0xff ] + msg + [chksum]
-        
+
         self.dyn.acq_mutex()
         try:
             self.send_serial( msg )
@@ -314,7 +314,7 @@ class Robotis_Servo():
             self.dyn.rel_mutex()
             raise
         self.dyn.rel_mutex()
-        
+
         if err != 0:
             self.process_err( err )
 
@@ -335,7 +335,7 @@ class Robotis_Servo():
         data = self.dyn.read_serial( ord(data_len) - 2 )
         checksum = self.dyn.read_serial( 1 ) # I'm not going to check...
         return [ord(v) for v in data], ord(err)
-        
+
 
     def send_serial(self, msg):
         """ sends the command to the servo
@@ -371,7 +371,7 @@ def recover_servo(dyn):
     raw_input('Disconnect power from the servo, but leave USB2Dynamixel connected to USB. [ENTER]')
 
     dyn.servo_dev.setBaudrate( 57600 )
-    
+
     print 'Get Ready.  Be ready to reconnect servo power when I say \'GO!\''
     print 'After a second, the red LED should become permanently lit.'
     print 'After that happens, Ctrl + C to kill this program.'
@@ -434,4 +434,4 @@ if __name__ == '__main__':
     if opt.ang != None:
         servo = Robotis_Servo( dyn, opt.id )
         servo.move_angle( math.radians(opt.ang), math.radians(opt.ang_vel) )
-    
+
