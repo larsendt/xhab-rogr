@@ -1,5 +1,11 @@
-string source = rogr
-string property
-time timestamp
-float32 value
-int8 sensor_id
+float32 shoulder1_angle
+float32 shoulder2_angle
+float32 elbow1_angle
+float32 elbow2_angle
+float32 wrist_angle
+float32 endeffector_angle
+float32 pan
+float32 tilt
+float32 range_sensor_id
+float32 pressure_sensor_id
+float32 nutrient_pump_status
